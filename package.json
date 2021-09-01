@@ -1,16 +1,19 @@
 {
-  "name": "twitchgameanalysis",
+  "name": "TwitchGameAnalysis",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "backend": "nodemon server/index.js",
+    "startall": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
   "author": "Junman Choi",
   "license": "ISC",
   "description": "Visualizing Twitch game streaming data",
   "dependencies": {
+    "concurrently": "^6.2.1",
     "express": "^4.17.1",
-    "mongoose": "^6.0.3"
+    "mongoose": "^6.0.3",
+    "nodemon": "^2.0.12"
   }
 }
