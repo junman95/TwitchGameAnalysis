@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+//Chackra Provider
+import {ChackraProvider} from "@chakra-ui/react"
 
 function App() {
   return (
