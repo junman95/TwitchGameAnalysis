@@ -2,6 +2,7 @@ import React from "react";
 import { ChakraProvider } from "@chakra-ui/provider";
 //importing Components
 import NavBar from "./NavBar";
+import Body from "./Body";
 //theme
 import theme from "../styleComponents/theme/Theme";
 import Fonts from "../styleComponents/fonts/Fonts";
@@ -11,6 +12,7 @@ const MainPage = () => {
     <ChakraProvider theme={theme}>
       <Fonts />
       <NavBar />
+      <Body/>
     </ChakraProvider>
   );
 };
