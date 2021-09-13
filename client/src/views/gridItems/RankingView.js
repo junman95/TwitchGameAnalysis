@@ -39,9 +39,9 @@ const RankingView = (props) => {
 
   if (!isRank) return null;
   return (
-    <Box>
-      <VStack spacing={1} divider={<StackDivider borderColor="#123123" />}>
-        <Box>
+    <Box as="a" boxShadow="md" >
+      <VStack padding="1" boxShadow={props.boxShadow} borderRadius="10px" bg={'#FAF5FF'} spacing={1} divider={<StackDivider borderColor="#6441A5" />}>
+        <Box >
           <Image style={{float:"left",marginTop:"2px",marginRight:"7px"}} boxSize={5} src="img/ranking.png" />
           게임 랭킹
         </Box>

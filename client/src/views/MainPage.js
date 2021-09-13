@@ -1,18 +1,19 @@
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/provider";
+import { Box, Heading } from "@chakra-ui/layout";
 //importing Components
 import NavBar from "./NavBar";
 import Body from "./Body";
 //theme
 import theme from "../styleComponents/theme/Theme";
-import Fonts from "../styleComponents/fonts/Fonts";
 
 const MainPage = () => {
   return (
     <ChakraProvider theme={theme}>
-      <Fonts />
-      <NavBar />
-      <Body/>
+      <Box h="100vh" w="100vw"  bg={"#A0AEC0"}>
+        <NavBar fontFamily="TwitchFont" />
+        <Body boxShadow={"3px 3px 8px"}/>
+      </Box>
     </ChakraProvider>
   );
 };
