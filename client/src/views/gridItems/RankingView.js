@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 //chakra-ui
 import { Box, VStack, StackDivider } from "@chakra-ui/layout";
@@ -39,7 +38,7 @@ const RankingView = (props) => {
 
   if (!isRank) return null;
   return (
-    <Box as="a" boxShadow="md" >
+    <Box as="a">
       <VStack padding="1" boxShadow={props.boxShadow} borderRadius="10px" bg={'#FAF5FF'} spacing={1} divider={<StackDivider borderColor="#6441A5" />}>
         <Box >
           <Image style={{float:"left",marginTop:"2px",marginRight:"7px"}} boxSize={5} src="img/ranking.png" />

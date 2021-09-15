@@ -7,12 +7,6 @@ import RankingView from "./gridItems/RankingView";
 
 const Body = (props) => {
 
-  const [isLeftTopOpacity,setIsLeftTopOpacity] = useState("80%");
-  const [isLeftBottomOpacity,setIsLeftBottomOpacity] = useState("80%");
-  const [isCenterOpacity,setIsCenterOpacity] = useState("80%");
-  const [isRightTopOpacity,setIsRightTopOpacity] = useState("80%");
-  const [isRightBottomOpacity,setIsRightBottomOpacity] = useState("80%");
-
   return (
     <Grid
       position="relative"
@@ -22,14 +16,16 @@ const Body = (props) => {
       templateColumns="repeat(4, 1fr)"
       gap={3}
     >
-      <GridItem boxShadow={props.boxShadow} onMouseOver={()=>setIsLeftTopOpacity("100%")} onMouseOut={()=>setIsLeftTopOpacity("80%")} colSpan={1} rowSpan={1} bg={'#FAF5FF'} opacity={isLeftTopOpacity}>
+      <GridItem boxShadow={props.boxShadow}  colSpan={1} rowSpan={1} bg={'#FAF5FF'}>
       </GridItem>
-      <GridItem boxShadow={props.boxShadow} colSpan={2} rowSpan={2} bg={'#FAF5FF'} opacity={isCenterOpacity}>
-        <Box fontSize="100pt"> 현지가 지켜본다!</Box>
+      <GridItem colSpan={2} rowSpan={2}>
+        <StreamingView boxShadow={props.boxShadow}/>
       </GridItem>
-      <GridItem onMouseOver={()=>setIsRightTopOpacity("100%")} onMouseOut={()=>setIsRightTopOpacity("80%")} colSpan={1} rowSpan={1} opacity={isRightTopOpacity}><RankingView boxShadow={props.boxShadow}/></GridItem>
-      <GridItem boxShadow={props.boxShadow} colSpan={1} rowSpan={1} bg={'#FAF5FF'} opacity={isLeftBottomOpacity}>hi</GridItem>
-      <GridItem boxShadow={props.boxShadow} colSpan={1} rowSpan={1} bg={'#FAF5FF'} opacity={isRightBottomOpacity}>hi</GridItem>
+      <GridItem colSpan={1} rowSpan={1}>
+        <RankingView  boxShadow={props.boxShadow}/>
+      </GridItem>
+      <GridItem boxShadow={props.boxShadow} colSpan={1} rowSpan={1} bg={'#FAF5FF'}>hi</GridItem>
+      <GridItem boxShadow={props.boxShadow} colSpan={1} rowSpan={1} bg={'#FAF5FF'}>hi</GridItem>
     </Grid>
   );
 };

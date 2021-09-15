@@ -11,7 +11,7 @@ const MainPage = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box h="100vh" w="100vw"  bg={"#A0AEC0"}>
-        <NavBar fontFamily="TwitchFont" />
+        <NavBar fontFamily="TwitchFont"/>
         <Body boxShadow={"3px 3px 8px"}/>
       </Box>
     </ChakraProvider>
