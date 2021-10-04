@@ -24,8 +24,10 @@ const StreamingView = (props) => {
     >
       <Box>
         {isEmbeded? ( <TwitchEmbed
-        channel="109ace"
-        id="109ace"
+        box-sizing="border-box"
+        w="100%"
+        channel="kimdoe"
+        id="kimdoe"
         theme="dark"
         withChat="false"
         muted
