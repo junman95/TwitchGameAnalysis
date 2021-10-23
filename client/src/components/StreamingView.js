@@ -17,21 +17,18 @@ const StreamingView = (props) => {
   }, [])
   return (
     <VStack
-      h="100%"
+      overflow="hidden"
       w="100%"
       boxShadow={props.boxShadow}
       borderRadius="10px"
       bg={"#FAF5FF"}
     >
       <StreamingBox>
-        {isEmbeded? ( <TwitchEmbed
+        {isEmbeded? ( <TwitchPlayer
         box-sizing="border-box"
-        w="100%"
-        channel="109ace"
-        id="109ace"
+        channel="SWAB85"
+        id="SWAB85"
         theme="dark"
-        withChat="false"
-        muted
         onVideoPause={() => console.log(':(')}
       />):""}
       </StreamingBox>
@@ -41,7 +38,7 @@ const StreamingView = (props) => {
 
 const StreamingBox = styled(Box)`
   display: flex;
-  overflow: hidden;
+  width:100%;
 
   TwitchEmbed{
     object-fit: cover;
