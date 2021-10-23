@@ -13,5 +13,5 @@ code {
 }
 @font-face {
   font-family: 'TwitchFont';
-  src: url('styleComponents/fonts/sources/Twitchy.TV.ttf') format('truetype');
+  src: url('/fonts/Twitchy.TV.ttf') format('truetype');
 }
