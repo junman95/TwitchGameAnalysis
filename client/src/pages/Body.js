@@ -10,40 +10,19 @@ const Body = (props) => {
   return (
     <Container>
       <Grid
+        width="100vw"
+        height = "92vh"
         position="relative"
         padding="20px"
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(4, 1fr)"
         gap={3}
-        overflow="hidden"
       >
-        <GridItem
-          boxShadow={props.boxShadow}
-          colSpan={1}
-          rowSpan={1}
-          bg={"#FAF5FF"}
-        ></GridItem>
-        <GridItem colSpan={2} rowSpan={2}>
+        <GridItem colSpan={3} rowSpan={2}>
           <StreamingView boxShadow={props.boxShadow} />
         </GridItem>
-        <GridItem colSpan={1} rowSpan={1}>
+        <GridItem colSpan={1} rowSpan={2}>
           <RankingView boxShadow={props.boxShadow} />
-        </GridItem>
-        <GridItem
-          boxShadow={props.boxShadow}
-          colSpan={1}
-          rowSpan={1}
-          bg={"#FAF5FF"}
-        >
-          hi
-        </GridItem>
-        <GridItem
-          boxShadow={props.boxShadow}
-          colSpan={1}
-          rowSpan={1}
-          bg={"#FAF5FF"}
-        >
-          hi
         </GridItem>
       </Grid>
     </Container>
@@ -56,5 +35,7 @@ const Container = styled.div`
   background-size: cover;
   position: relative;
   height: 100%;
+  display: flex;
+  flex-direction: row;
 `
 export default Body;

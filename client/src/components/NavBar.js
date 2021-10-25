@@ -12,9 +12,10 @@ const NavBar = (props) => {
     <Flex
       as="nav"
       w="100%"
+      height="8vh"
       align="center"
       color="white"
-      bg="#9146FF"
+      bg="#9c74f3"
       justify="space-between"
       wrap="wrap"
       padding="1rem"

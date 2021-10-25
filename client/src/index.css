@@ -11,7 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 @font-face {
   font-family: 'TwitchFont';
-  src: url('/fonts/Twitchy.TV.ttf') format('truetype');
+  src: url('./Twitchy.TV.ttf') format('truetype');
 }

@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 //chakra-ui
 import { Box, VStack, StackDivider } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
-import Icon from "@chakra-ui/icon";
+import styled from "styled-components";
 
 const getJsonData = (data) => {
   const parseData = data.data.map((item) => (
@@ -22,8 +22,8 @@ const RankingView = (props) => {
       method: "get",
       url: "https://api.twitch.tv/helix/games/top",
       headers: {
-        Authorization: "Bearer h01qel241io76w5uz6wp00hty1gwjr",
-        "client-id": "z4axj8z8mqrhv5g5zq0aincu6kngf4",
+        Authorization: process.env.REACT_APP_TWITCH_AUTH,
+        "client-id": process.env.REACT_APP_TWITCH_CLIENTID,
       },
     };
     axios(config)
@@ -38,18 +38,28 @@ const RankingView = (props) => {
 
   if (!isRank) return null;
   return (
-    <Box as="a">
-      <VStack padding="1" boxShadow={props.boxShadow} borderRadius="10px" bg={'#FAF5FF'} spacing={1} divider={<StackDivider borderColor="#6441A5" />}>
-        <Box  >
-          <Image style={{float:"left",marginTop:"2px",marginRight:"7px"}} boxSize={5} src="img/ranking.png" />
-          게임 랭킹
-        </Box>
-        {isRank.map((rank) => (
-          <Box cursor="pointer" marginStart={3} key={rank.id}>
-            {rank.name}
+    <Container as="div">
+      <RankingBox boxShadow={props.boxShadow} bgGradient="linear(purple.100 20%, red.100 80%)">
+        <RankingStack
+          padding="1"
+          spacing={1}
+          divider={<StackDivider borderColor="#6441A5" />}
+        >
+          <Box>
+            <Image
+              style={{ float: "left", marginTop: "2px", marginRight: "7px" }}
+              boxSize={5}
+              src="images/ranking.png"
+            />
+            게임 랭킹
           </Box>
-        ))}
-      </VStack>
+          {isRank.map((rank) => (
+            <ItemBox cursor="pointer" marginStart={3} key={rank.id}>
+              {rank.name}
+            </ItemBox>
+          ))}
+        </RankingStack>
+      </RankingBox>
       <Box textAlign="right" fontSize={1}>
         <a
           href="https://www.flaticon.com/kr/authors/flat-icons"
@@ -62,8 +72,39 @@ const RankingView = (props) => {
           www.flaticon.com
         </a>
       </Box>
-    </Box>
+      <InfoBox boxShadow={props.boxShadow} bgGradient="linear(purple.100 20%, red.100 80%)">
+            a
+      </InfoBox>
+    </Container>
   );
 };
+
+const Container = styled(Box)`
+  height: 100%;
+  margin-bottom: 8px;
+`
+
+const RankingStack = styled(VStack)`
+  justify-content: center;
+`;
+
+const RankingBox = styled(Box)`
+  position: relative;
+  height: 49%;
+  overflow: scroll;
+  border-radius: 10px;
+  background-blend-mode: screen;
+  font-weight: bold;
+`;
+
+const ItemBox = styled(Box)`
+  transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+  &:hover{
+    transform: scale(1.2);
+  }
+`
+
+const InfoBox = styled(RankingBox)`
+`;
 
 export default RankingView;
