@@ -29,8 +29,8 @@ const StreamingView = (props) => {
         width="100%"
         height="100%"
         box-sizing="border-box"
-        channel="LCK_KOREA"
-        id="LCK_KOREA"
+        channel="109ace"
+        id="109ace"
         theme="dark"
         onVideoPause={() => console.log(':(')}
       />):""}

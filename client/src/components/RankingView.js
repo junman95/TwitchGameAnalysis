@@ -4,6 +4,9 @@ import axios from "axios";
 import { Box, VStack, StackDivider } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import styled from "styled-components";
+//redux
+import { useSelector } from "react-redux";
+import { selectRankItem } from "../features/rank/rankSlice";
 
 const getJsonData = (data) => {
   const parseData = data.data.map((item) => (
@@ -17,29 +20,15 @@ const getJsonData = (data) => {
 
 const RankingView = (props) => {
   const [isRank, setIsRank] = useState(false);
-  useEffect(() => {
-    const config = {
-      method: "get",
-      url: "https://api.twitch.tv/helix/games/top",
-      headers: {
-        Authorization: process.env.REACT_APP_TWITCH_AUTH,
-        "client-id": process.env.REACT_APP_TWITCH_CLIENTID,
-      },
-    };
-    axios(config)
-      .then(function (response) {
-        setIsRank(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-
-  if (!isRank) return null;
+  const rankItems = useSelector((state) => state.rankItem);
+  //console.log(rankItems);
+  if (!rankItems) return null;
   return (
     <Container as="div">
-      <RankingBox boxShadow={props.boxShadow} bgGradient="linear(purple.100 20%, red.100 80%)">
+      <RankingBox
+        boxShadow={props.boxShadow}
+        bgGradient="linear(purple.100 20%, red.100 80%)"
+      >
         <RankingStack
           padding="1"
           spacing={1}
@@ -53,8 +42,8 @@ const RankingView = (props) => {
             />
             게임 랭킹
           </Box>
-          {isRank.map((rank) => (
-            <ItemBox cursor="pointer" marginStart={3} key={rank.id}>
+          {rankItems.map((rank) => (
+            <ItemBox cursor="pointer" onClick marginStart={3} key={rank.id}>
               {rank.name}
             </ItemBox>
           ))}
@@ -72,8 +61,11 @@ const RankingView = (props) => {
           www.flaticon.com
         </a>
       </Box>
-      <InfoBox boxShadow={props.boxShadow} bgGradient="linear(purple.100 20%, red.100 80%)">
-            a
+      <InfoBox
+        boxShadow={props.boxShadow}
+        bgGradient="linear(purple.100 20%, red.100 80%)"
+      >
+        a
       </InfoBox>
     </Container>
   );
@@ -82,7 +74,7 @@ const RankingView = (props) => {
 const Container = styled(Box)`
   height: 100%;
   margin-bottom: 8px;
-`
+`;
 
 const RankingStack = styled(VStack)`
   justify-content: center;
@@ -95,16 +87,16 @@ const RankingBox = styled(Box)`
   border-radius: 10px;
   background-blend-mode: screen;
   font-weight: bold;
+  scroll-behavior: smooth;
 `;
 
 const ItemBox = styled(Box)`
   transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-  &:hover{
+  &:hover {
     transform: scale(1.2);
   }
-`
-
-const InfoBox = styled(RankingBox)`
 `;
+
+const InfoBox = styled(RankingBox)``;
 
 export default RankingView;
