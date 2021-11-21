@@ -20,7 +20,25 @@ const getJsonData = (data) => {
 
 const RankingView = (props) => {
   const [isRank, setIsRank] = useState(false);
+  const [isUrl, setIsUrl] = useState(null);
+
   const rankItems = useSelector((state) => state.rankItem);
+
+  const GetBoxArtUrl = (input_url) => {
+    let output_url = "";
+    output_url = input_url.replace(/\{width\}/, 500);
+    output_url = output_url.replace(/\{height\}/, 500);
+    console.log(output_url);
+    setIsUrl(output_url);
+  };
+
+  const BoxArtImg = ({ url }) => {
+    return <img alt={url} src={url} />;
+  };
+
+  useEffect(() => {
+    console.log("new Img");
+  }, [isUrl]);
   //console.log(rankItems);
   if (!rankItems) return null;
   return (
@@ -43,7 +61,12 @@ const RankingView = (props) => {
             게임 랭킹
           </Box>
           {rankItems.map((rank) => (
-            <ItemBox cursor="pointer" onClick marginStart={3} key={rank.id}>
+            <ItemBox
+              cursor="pointer"
+              onClick={() => GetBoxArtUrl(rank.box_art_url)}
+              marginStart={3}
+              key={rank.id}
+            >
               {rank.name}
             </ItemBox>
           ))}
@@ -65,7 +88,7 @@ const RankingView = (props) => {
         boxShadow={props.boxShadow}
         bgGradient="linear(purple.100 20%, red.100 80%)"
       >
-        a
+        {isUrl ? <BoxArtImg  url={isUrl} /> : null}
       </InfoBox>
     </Container>
   );
@@ -88,6 +111,7 @@ const RankingBox = styled(Box)`
   background-blend-mode: screen;
   font-weight: bold;
   scroll-behavior: smooth;
+  animation: fadein 2s;
 `;
 
 const ItemBox = styled(Box)`
@@ -97,6 +121,32 @@ const ItemBox = styled(Box)`
   }
 `;
 
-const InfoBox = styled(RankingBox)``;
+const InfoBox = styled(RankingBox)`
+  overflow: hidden;
+  display: flex;
+  object-fit: cover;
+  animation: fadein 2s;
+  img {
+    width: 100%;
+    height: 100%;
+    animation: fadein 2s;
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+`;
 
 export default RankingView;
