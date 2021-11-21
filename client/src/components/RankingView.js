@@ -7,6 +7,9 @@ import styled from "styled-components";
 //redux
 import { useSelector } from "react-redux";
 import { selectRankItem } from "../features/rank/rankSlice";
+//child components
+import InfoBox from "./InfoBox";
+
 
 const getJsonData = (data) => {
   const parseData = data.data.map((item) => (
@@ -30,10 +33,6 @@ const RankingView = (props) => {
     output_url = output_url.replace(/\{height\}/, 500);
     console.log(output_url);
     setIsUrl(output_url);
-  };
-
-  const BoxArtImg = ({ url }) => {
-    return <img alt={url} src={url} />;
   };
 
   useEffect(() => {
@@ -84,12 +83,11 @@ const RankingView = (props) => {
           www.flaticon.com
         </a>
       </Box>
-      <InfoBox
+      <InfoBox url ={isUrl}
         boxShadow={props.boxShadow}
         bgGradient="linear(purple.100 20%, red.100 80%)"
-      >
-        {isUrl ? <BoxArtImg  url={isUrl} /> : null}
-      </InfoBox>
+        fade = {isUrl!==null?"fadein":"fadeout"}
+      />
     </Container>
   );
 };
@@ -121,32 +119,5 @@ const ItemBox = styled(Box)`
   }
 `;
 
-const InfoBox = styled(RankingBox)`
-  overflow: hidden;
-  display: flex;
-  object-fit: cover;
-  animation: fadein 2s;
-  img {
-    width: 100%;
-    height: 100%;
-    animation: fadein 2s;
-    @keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    @keyframes fadeOut {
-      0% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-  }
-`;
 
 export default RankingView;
